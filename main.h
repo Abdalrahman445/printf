@@ -11,6 +11,7 @@
 int my_putchar(char c);
 int my_putstr(char *s, int index);
 int _printf(const char *format, ...);
+int handle_printing(const char* format, int i, va_list ap);
 
 #endif
 
