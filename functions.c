@@ -21,7 +21,7 @@ int my_putstr (char *s){
     if (s == NULL)
     {
         my_putstr("(null)");
-        return;
+        return 6;
 
     }
     while( s[counter] )
