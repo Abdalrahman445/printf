@@ -16,12 +16,8 @@ return (write(1, &c, 1));
  */
 int my_putstr(char *s, int index)
 {
-int counter = 0;
-if (s == NULL)
-{
-my_putstr("(null)", 6);
-return (6);
-}
+int counter;
+
 for (counter = 0; counter < index; counter++)
 {
 my_putchar(s[counter]);

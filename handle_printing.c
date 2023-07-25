@@ -22,6 +22,11 @@ printed_chars++;
 else if (format[i] == 's')
 {
 s = va_arg(ap, char *);
+if (s == NULL)
+{
+my_putstr("(null)", 6);
+return (6);
+}
 len = 0;
 while (s[len] != '\0')
 	len++;
