@@ -24,11 +24,11 @@ printed_chars += my_putstr(buffer, index), index = 0;
 }
 else
 {
-printde_chars += my_putstr(buffer, index);
+printed_chars += my_putstr(buffer, index);
 index = 0, i++;
 if (format[i] == 'c')
 {
-c = va_arg(ap, char);
+c = va_arg(ap, int);
 my_putchar(c), printed_chars++;
 }
 else if (format[i] == 's')
