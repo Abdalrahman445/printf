@@ -45,7 +45,7 @@ return (-1);
 else
 {
 E = format[i], my_putchar('%'), my_putchar(E);
-return (2);
+return (-1);
 }
 return (printed_chars);
 }
