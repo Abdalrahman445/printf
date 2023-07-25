@@ -11,6 +11,7 @@ return (write(1, &c, 1));
 /**
  * my_putstr - Prints a string.
  * @s: The string to be printed.
+ * @index: The number of characters
  * Return: The number of printed characters.
  */
 int my_putstr(char *s, int index)
