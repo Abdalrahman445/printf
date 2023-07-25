@@ -11,7 +11,9 @@ char buffer[BUFFSIZE], c, *s;
 
 va_list ap;
 va_start(ap, format);
-index = 0, printed_chars = 0, len = 0;
+index = 0, printed_chars = 0;
+if (!format || !format[0])
+	return (-1);
 for (i = 0 ; format[i] != '\0' ; i++)
 {
 if (format[i] != '%')
@@ -19,12 +21,12 @@ if (format[i] != '%')
 buffer[index++] = format[i];
 if (index == BUFFSIZE)
 {
-printed_chars += my_putstr(buffer, index), index = 0;
+printed_chars += my_putstr(buffer), index = 0;
 }
 }
 else
 {
-printed_chars += my_putstr(buffer, index);
+printed_chars += my_putstr(buffer);
 index = 0, i++;
 if (format[i] == 'c')
 {
@@ -33,10 +35,8 @@ my_putchar(c), printed_chars++;
 }
 else if (format[i] == 's')
 {
-s = va_arg(ap, char *), len = 0;
-while (s[len] != '\0')
-	len++;
-printed_chars += my_putstr(s, len), len = 0;
+s = va_arg(ap, char *);
+printed_chars += my_putstr(s);
 }
 else if (format[i] == '%')
 {
