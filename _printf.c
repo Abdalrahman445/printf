@@ -6,7 +6,7 @@
  */
 int _printf(const char *format, ...)
 {
-int i, printed_chars, len, index;
+int i, printed_chars, index;
 char buffer[BUFFSIZE], c, *s;
 
 va_list ap;
