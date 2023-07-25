@@ -13,7 +13,7 @@ return (write(1, &c, 1));
  * @s: The string to be printed.
  * Return: The number of printed characters.
  */
-int my_putstr(char *s)
+int my_putstr(char *s, int index)
 {
 int counter = 0;
 if (s == NULL)
@@ -21,10 +21,9 @@ if (s == NULL)
 my_putstr("(null)");
 return (6);
 }
-while (s[counter])
+for (counter = 0; counter < index; counter++)
 {
 my_putchar(s[counter]);
-counter++;
 }
 return (counter);
 }
