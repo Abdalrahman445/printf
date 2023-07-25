@@ -4,46 +4,34 @@
  * @format: the string in the main printf
  * Return:  the number of characters printed
  */
-int _printf(const char *format, ...)
+int _printf(const char* format, ...)
 {
-int i, printed_chars, index, len;
-char buffer[BUFFSIZE], c, *s;
+    int i, printed_chars, index, j;
+    char buffer[BUFFSIZE];
 
-va_list ap;
-va_start(ap, format), index = 0, printed_chars = 0;
-if (!format || !format[0])
-	return (-1);
-for (i = 0 ; format[i] != '\0' ; i++)
-{
-if (format[i] != '%')
-{
-buffer[index++] = format[i];
-if (index == BUFFSIZE)
-{
-printed_chars += my_putstr(buffer, index), index = 0;
-}
-}
-else
-{
-printed_chars += my_putstr(buffer, index), index = 0, i++;
-if (format[i] == 'c')
-{
-c = va_arg(ap, int);
-my_putchar(c), printed_chars++;
-}
-else if (format[i] == 's')
-{
-s = va_arg(ap, char *), len = 0;
-while (s[len] != '\0')
-	len++;
-printed_chars += my_putstr(s, len), len = 0;
-}
-else if (format[i] == '%')
-{
-my_putchar('%'), printed_chars++;
-}
-}
-}
-va_end(ap);
-return (printed_chars);
+    va_list ap;
+    va_start(ap, format), index = 0, printed_chars = 0;
+    if (format == NULL)
+        return (-1);
+    for (i = 0; format[i] != '\0'; i++)
+    {
+        if (format[i] != '%')
+        {
+            buffer[index++] = format[i];
+            if (index == BUFFSIZE)
+                printed_chars += my_putstr(buffer, index), index = 0;
+        }
+        else
+        {
+            printed_chars += my_putstr(buffer, index), index = 0, i++;
+            j = handle_printing(format, i, ap);
+            if (j == -1)
+                return (-1);
+            else if (j == 2)
+                return (2);
+            printed_chars += j;
+        }
+    }
+    va_end(ap);
+    return (printed_chars);
 }
