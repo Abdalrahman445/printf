@@ -19,7 +19,7 @@ int my_putstr(char *s, int index)
 int counter = 0;
 if (s == NULL)
 {
-my_putstr("(null)");
+my_putstr("(null)", 6);
 return (6);
 }
 for (counter = 0; counter < index; counter++)
