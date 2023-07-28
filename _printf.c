@@ -1,35 +1,89 @@
 #include "main.h"
 /**
- * _printf - a function that print any type
- * @format: the string in the main printf
- * Return:  the number of characters printed
+ * _printf - a function that works similar to printf function.
+ * @format: string to be printed.
+ * Return: number of printed characters.
  */
 int _printf(const char *format, ...)
 {
-int i, printed_chars, index, j;
-char buffer[BUFFSIZE];
-
-va_list ap;
-va_start(ap, format), index = 0, printed_chars = 0;
-if (format == NULL)
+int count = 0;
+va_list args;
+va_start(args, format);
+if (*format == NULL)
 return (-1);
-for (i = 0; format[i] != '\0'; i++)
+while (*format)
 {
-if (format[i] != '%')
+if (*format == '%')
 {
-buffer[index++] = format[i];
-if (index == BUFFSIZE)
-	printed_chars += my_putstr(buffer, index), index = 0;
+format++;
+if (*format == 'c')
+{
+char c = va_arg(args, int);
+count += pchar(c);
+}
+else if (*format == 's')
+{
+char *str = va_arg(args, char *);
+count += pstr(str);
+}
+else if (*format == '%')
+{
+pchar('%');
+count++;
+}
+else if (*format == 'i' || *format == 'd')
+{
+int num = va_arg(args, int);
+if (num < 0)
+count++;
+pnum(num);
+count += num_len(num);
+}
+else if (*format == 'b')
+{
+int num = va_arg(args, int);
+count += pbinary(num);
+}
+else if (*format == 'u')
+{
+unsigned int num = va_arg(args, unsigned int);
+pnum(num);
+count += num_len(num);
+}
+else if (*format == 'o')
+{
+int num = va_arg(args, int);
+count += pocta(num);
+}
+else if (*format == 'x')
+{
+int num = va_arg(args, int);
+count += phexa_x(num);
+}
+else if (*format == 'X')
+{
+int num = va_arg(args, int);
+count += phexa_X(num);
+}
+else if (*format == 'p')
+{
+void *ptr = va_arg(args, void *);
+count += pptr((unsigned int)ptr);
 }
 else
 {
-printed_chars += my_putstr(buffer, index), index = 0, i++;
-j = handle_printing(format, i, ap);
-if (j == -1)
-	return (-1);
-printed_chars += j;
+char c = va_arg(args, char);
+pchar(c);
+count++;
 }
 }
-va_end(ap);
-return (printed_chars);
+else
+{
+pchar(*format);
+count++;
+}
+format++;
+}
+va_end(args);
+return (count);
 }
