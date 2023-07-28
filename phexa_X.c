@@ -9,14 +9,18 @@
 int phexa_X(unsigned int num)
 {
 int count = 0;
+int j;
+char hexa[(((sizeof(int) * 8)) / 4)];
+int i;
+int mod;
 if (num == 0)
 {
-pchar ('0'), return (1);
+pchar ('0');
+return (1);
 }
-char hexa[(((sizeof(int) * 8)) / 4)], int i;
 for (i = 0; num > 0; i++)
 {
-int mod = (num % 16);
+mod = (num % 16);
 if (mod >= 0 && mod <= 9)
 {
 hexa[i] = (mod + '0');
@@ -26,25 +30,31 @@ else
 switch (mod)
 {
 case 10:
-hexa[i] = 'A', break;
+hexa[i] = 'A';
+break;
 case 11:
-hexa[i] = 'B', break;
+hexa[i] = 'B';
+break;
 case 12:
-hexa[i] = 'C', break;
+hexa[i] = 'C';
+break;
 case 13:
-hexa[i] = 'D', break;
+hexa[i] = 'D';
+break;
 case 14:
-hexa[i] = 'E', break;
+hexa[i] = 'E';
+break;
 case 15:
-hexa[i] = 'F', break;
+hexa[i] = 'F';
+break;
 }
 }
 num = num / 16;
 }
-int j;
-for (int j = (i - 1); j >= 0; j--)
+for (j = (i - 1); j >= 0; j--)
 {
-pchar (hexa[j]), count++;
+pchar(hexa[j]);
+count++;
 }
 return (count);
 }

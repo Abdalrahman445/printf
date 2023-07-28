@@ -9,7 +9,7 @@ int _printf(const char *format, ...)
 int count = 0;
 va_list args;
 va_start(args, format);
-if (*format == NULL)
+if (format == NULL)
 return (-1);
 while (*format)
 {
@@ -68,11 +68,11 @@ count += phexa_X(num);
 else if (*format == 'p')
 {
 void *ptr = va_arg(args, void *);
-count += pptr((unsigned int)ptr);
+count += pptr((unsigned long int)ptr);
 }
 else
 {
-char c = va_arg(args, char);
+char c = va_arg(args, int);
 pchar(c);
 count++;
 }

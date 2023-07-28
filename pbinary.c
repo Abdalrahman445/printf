@@ -28,7 +28,7 @@ binary[i] = '1';
 }
 num = num / 2;
 }
-for (int j = (i - 1); j >= 0; j--)
+for (j = (i - 1); j >= 0; j--)
 {
 pchar (binary[j]);
 count++;
