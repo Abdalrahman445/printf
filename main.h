@@ -8,10 +8,15 @@
 
 #define BUFFSIZE 1024
 
-int my_putchar(char c);
-int my_putstr(char *s, int index);
 int _printf(const char *format, ...);
-int handle_printing(const char* format, int i, va_list ap);
+int pchar (char c);
+int num_len (int num);
+int pbinary (unsigned int num);
+int pocta (unsigned int num);
+int phexa_x (unsigned int num);
+int pptr (unsigned int num);
+int pstr (char *str);
+void pnum (int num);
 
 #endif
 
